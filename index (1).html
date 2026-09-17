@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Kelvin Shamir Cárdenas Paredes — Ingeniero de Software Backend especializado en Java, Spring Boot y Microservicios. Proyectos para BCP, TCS y más."/>
+<meta property="og:title" content="Kelvin Shamir Cárdenas | Backend Engineer"/>
+<meta property="og:description" content="Ingeniero de Software con experiencia en Java, Spring Boot, Microservicios y proyectos financieros de alto impacto."/>
+<meta name="theme-color" content="#060a10"/>
+<title>Kelvin Shamir Cárdenas · Backend Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+/* ── Reset & Tokens ─────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:       #060a10;
+  --bg2:      #0b1018;
+  --surface:  rgba(255,255,255,.04);
+  --border:   rgba(255,255,255,.07);
+  --green:    #22d3a5;
+  --green-dim:rgba(34,211,165,.12);
+  --blue:     #38bdf8;
+  --text:     #f1f5f9;
+  --muted:    #64748b;
+  --dim:      #1e293b;
+  --sans:     'Inter',sans-serif;
+  --mono:     'JetBrains Mono',monospace;
+  --ease:     cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none;cursor:none}
+button{cursor:none;font-family:var(--sans);border:none;background:none}
+ul{list-style:none}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:2px}
+
+/* ── Cursor ─────────────────────────────────────── */
+#cur-dot,#cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;will-change:transform}
+#cur-dot{width:7px;height:7px;background:var(--green);transition:transform .06s linear}
+#cur-ring{width:30px;height:30px;border:1px solid rgba(34,211,165,.45);transition:transform .13s var(--ease)}
+
+/* ── Nav ─────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 8vw;
+  transition:padding .3s var(--ease),background .3s,border-color .3s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  padding:13px 8vw;
+  background:rgba(6,10,16,.9);
+  backdrop-filter:blur(20px);
+  border-bottom-color:var(--border);
+}
+.logo{font-family:var(--mono);font-size:14px;letter-spacing:.12em;color:var(--green);font-weight:500}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:13px;color:var(--muted);letter-spacing:.02em;transition:color .2s;position:relative;padding:3px 0}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--green);transition:width .25s var(--ease)}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{
+  padding:9px 20px;border:1px solid var(--green);border-radius:3px;
+  color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  transition:background .2s,color .2s;
+}
+.nav-cta:hover{background:var(--green);color:var(--bg)}
+
+/* ── Hero ────────────────────────────────────────── */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:0 8vw;position:relative;overflow:hidden;
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(34,211,165,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,211,165,.025) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+.hero-glow{
+  position:absolute;top:10%;right:5%;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(34,211,165,.06) 0%,transparent 68%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:2;max-width:860px}
+.hero-status{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(34,211,165,.25);border-radius:50px;
+  padding:5px 14px;margin-bottom:28px;
+  font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:.1em;
+}
+.hero-status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1.hero-name{
+  font-size:clamp(44px,7.5vw,96px);font-weight:900;
+  line-height:1.0;letter-spacing:-.04em;color:var(--text);margin-bottom:6px;
+}
+h1.hero-name span{color:var(--green)}
+.hero-title{
+  font-family:var(--mono);font-size:clamp(13px,1.6vw,18px);
+  color:var(--muted);margin-bottom:36px;min-height:28px;
+}
+.hero-title em{color:var(--text);font-style:normal}
+#typed-cursor{color:var(--green);animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-stats{display:flex;gap:44px;flex-wrap:wrap;margin-bottom:44px}
+.stat-val{display:block;font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1}
+.stat-lbl{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{
+  padding:13px 28px;background:var(--green);color:var(--bg);
+  border-radius:3px;font-weight:700;font-size:13px;letter-spacing:.04em;
+  transition:opacity .2s,transform .2s;
+}
+.btn-primary:hover{opacity:.85;transform:translateY(-2px)}
+.btn-outline{
+  padding:13px 28px;border:1px solid var(--border);color:var(--muted);
+  border-radius:3px;font-size:13px;letter-spacing:.04em;
+  transition:border-color .2s,color .2s,transform .2s;
+}
+.btn-outline:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px)}
+.scroll-hint{
+  position:absolute;bottom:34px;left:8vw;
+  display:flex;align-items:center;gap:10px;
+}
+.scroll-line{width:1px;height:44px;background:linear-gradient(to bottom,transparent,var(--green))}
+.scroll-label{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.22em}
+
+/* ── Section base ────────────────────────────────── */
+section{padding:96px 8vw}
+section:nth-child(even){background:var(--bg2)}
+.sec-label{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:.22em;text-transform:uppercase;display:block;margin-bottom:10px}
+.sec-title{font-size:clamp(26px,3.8vw,46px);font-weight:800;letter-spacing:-.03em;color:var(--text);margin-bottom:52px;line-height:1.1}
+
+/* ── About ───────────────────────────────────────── */
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+.about-bio{color:var(--muted);line-height:1.9;font-size:15px;margin-bottom:18px}
+.about-bio strong{color:var(--text);font-weight:600}
+.about-meta{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.meta-item{border-left:2px solid var(--green);padding-left:12px}
+.meta-key{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.14em;margin-bottom:3px;text-transform:uppercase}
+.meta-val{font-size:14px;color:var(--text);font-weight:500}
+.about-card{
+  border-radius:6px;padding:44px 32px;
+  background:linear-gradient(135deg,rgba(34,211,165,.07),rgba(56,189,248,.04));
+  border:1px solid rgba(34,211,165,.13);
+  display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;
+  position:relative;
+}
+.about-card::before{
+  content:'';position:absolute;top:-12px;right:-12px;
+  width:60px;height:60px;
+  border-top:2px solid var(--green);border-right:2px solid var(--green);border-radius:2px;
+}
+.about-card::after{
+  content:'';position:absolute;bottom:-12px;left:-12px;
+  width:60px;height:60px;
+  border-bottom:2px solid var(--blue);border-left:2px solid var(--blue);border-radius:2px;
+}
+.card-avatar{font-size:64px;line-height:1}
+.card-name{font-family:var(--mono);font-size:12px;color:var(--green);letter-spacing:.08em}
+.card-role{font-size:13px;color:var(--muted)}
+.card-chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+.chip{
+  padding:4px 11px;background:rgba(34,211,165,.09);
+  border:1px solid rgba(34,211,165,.2);border-radius:2px;
+  font-family:var(--mono);font-size:10px;color:var(--green);
+}
+
+/* ── Skills ──────────────────────────────────────── */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 72px}
+.skill-row{margin-bottom:18px}
+.skill-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.skill-name{font-family:var(--mono);font-size:12px;color:#94a3b8;display:flex;align-items:center;gap:7px}
+.skill-pct{font-family:var(--mono);font-size:11px}
+.skill-track{background:rgba(255,255,255,.05);border-radius:2px;height:2px;overflow:hidden}
+.skill-fill{height:100%;border-radius:2px;width:0;transition:width 1.3s var(--ease)}
+
+/* ── Experience ──────────────────────────────────── */
+.timeline{position:relative;padding-left:36px}
+.timeline-line{
+  position:absolute;left:0;top:8px;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--green),transparent);
+}
+.exp-item{position:relative;margin-bottom:48px}
+.exp-dot{
+  position:absolute;left:-41px;top:7px;
+  width:10px;height:10px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 0 3px rgba(34,211,165,.15);
+}
+.exp-dot.dim{background:var(--dim);box-shadow:none}
+.exp-period{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.14em;margin-bottom:6px}
+.exp-role{font-size:19px;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:2px}
+.exp-company{font-family:var(--mono);font-size:12px;color:var(--green);margin-bottom:5px}
+.exp-location{font-size:12px;color:var(--muted);margin-bottom:12px}
+
+/* Client badge */
+.client-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);
+  border-radius:3px;padding:4px 12px;font-size:11px;color:var(--blue);
+  font-weight:600;margin-bottom:14px;letter-spacing:.02em;
+}
+.client-badge svg{width:13px;height:13px;fill:currentColor}
+
+.exp-desc{color:var(--muted);font-size:14px;line-height:1.85;margin-bottom:14px;max-width:700px}
+.exp-bullets{list-style:none;margin-bottom:14px;display:flex;flex-direction:column;gap:5px}
+.exp-bullets li{
+  font-size:13px;color:var(--muted);line-height:1.7;padding-left:16px;position:relative;
+}
+.exp-bullets li::before{content:'→';position:absolute;left:0;color:var(--green);font-size:11px;top:2px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  padding:3px 9px;background:var(--surface);border:1px solid var(--border);
+  border-radius:2px;font-family:var(--mono);font-size:10px;color:#94a3b8;
+}
+
+/* ── Projects ────────────────────────────────────── */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.proj-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:5px;
+  padding:26px;position:relative;overflow:hidden;
+  transition:border-color .25s,background .25s,transform .25s;
+}
+.proj-card:hover{border-color:var(--cc);background:rgba(255,255,255,.06);transform:translateY(-4px)}
+.proj-accent{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--cc);
+}
+.proj-client-flag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:10px;font-weight:700;letter-spacing:.06em;
+  color:var(--cc);background:rgba(255,255,255,.04);
+  border:1px solid currentColor;border-radius:50px;
+  padding:2px 9px;margin-bottom:14px;opacity:.85;
+  font-family:var(--mono);
+}
+.proj-icon{font-size:26px;margin-bottom:12px;display:block}
+.proj-title{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:9px}
+.proj-desc{color:var(--muted);font-size:13px;line-height:1.8;margin-bottom:16px}
+.proj-stack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.proj-arrow{
+  font-size:16px;color:var(--cc);
+  transition:opacity .2s,transform .2s;
+  opacity:0;transform:translateX(-6px);
+}
+.proj-card:hover .proj-arrow{opacity:1;transform:translateX(0)}
+
+/* ── Contact ─────────────────────────────────────── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.contact-lead{color:var(--muted);line-height:1.9;font-size:15px;margin-bottom:32px;max-width:400px}
+.contact-items{display:flex;flex-direction:column;gap:10px}
+.ci{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 16px;border:1px solid var(--border);border-radius:5px;
+  background:var(--surface);transition:border-color .2s,background .2s;
+}
+.ci:hover{border-color:rgba(34,211,165,.2);background:rgba(34,211,165,.03)}
+.ci-icon{font-size:18px;width:24px;text-align:center}
+.ci-key{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
+.ci-val{font-size:13px;color:var(--text);font-weight:500}
+.ci-val.link{color:var(--green)}
+
+/* Form */
+.form-field{margin-bottom:12px}
+.form-field input,.form-field textarea{
+  width:100%;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);border-radius:5px;
+  padding:13px 15px;color:var(--text);font-size:13px;outline:none;resize:none;
+  transition:border-color .2s,background .2s;font-family:var(--sans);
+}
+.form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted)}
+.form-field input:focus,.form-field textarea:focus{
+  border-color:var(--green);background:rgba(34,211,165,.03);
+}
+.form-field textarea{height:120px}
+.form-error{font-family:var(--mono);font-size:10px;color:#f87171;margin-top:4px;display:none}
+.form-field.invalid .form-error{display:block}
+.form-field.invalid input,.form-field.invalid textarea{border-color:#f87171}
+#form-submit{
+  width:100%;padding:15px;background:var(--green);border:none;border-radius:5px;
+  color:var(--bg);font-weight:700;font-size:13px;letter-spacing:.05em;
+  transition:opacity .2s,transform .2s;margin-top:4px;
+}
+#form-submit:hover{opacity:.85;transform:translateY(-1px)}
+#form-success{display:none;text-align:center;padding:48px 0}
+#form-success .fs-icon{font-size:44px;margin-bottom:12px}
+#form-success .fs-title{color:var(--green);font-size:18px;font-weight:700;margin-bottom:6px}
+#form-success .fs-sub{color:var(--muted);font-size:13px}
+
+/* ── Footer ──────────────────────────────────────── */
+footer{
+  border-top:1px solid var(--border);padding:28px 8vw;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+}
+.footer-copy{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-family:var(--mono);font-size:11px;color:var(--dim);transition:color .2s}
+.footer-links a:hover{color:var(--green)}
+
+/* ── Animations ──────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── Responsive ──────────────────────────────────── */
+@media(max-width:960px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:48px}
+  .skills-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  nav{padding:16px 5vw}
+  nav.scrolled{padding:12px 5vw}
+  .nav-links{display:none}
+  section{padding:72px 5vw}
+  #hero{padding:0 5vw}
+  .scroll-hint{left:5vw}
+  footer{padding:24px 5vw}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <span class="logo">KSC.</span>
+  <ul class="nav-links">
+    <li><a href="#hero">Inicio</a></li>
+    <li><a href="#about">Sobre mí</a></li>
+    <li><a href="#skills">Habilidades</a></li>
+    <li><a href="#experience">Experiencia</a></li>
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contáctame</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-status">
+      <span class="hero-status-dot"></span>
+      Disponible para proyectos
+    </div>
+    <h1 class="hero-name">Kelvin <span>Shamir</span><br>Cárdenas</h1>
+    <p class="hero-title"><em id="typed"></em><span id="typed-cursor">|</span></p>
+    <div class="hero-stats">
+      <div><span class="stat-val">4+</span><span class="stat-lbl">Años exp.</span></div>
+      <div><span class="stat-val">3</span><span class="stat-lbl">Empresas</span></div>
+      <div><span class="stat-val">BCP</span><span class="stat-lbl">Cliente destacado</span></div>
+      <div><span class="stat-val">100%</span><span class="stat-lbl">Remoto/Híbrido</span></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">Ver Proyectos →</a>
+      <a href="#contact" class="btn-outline">Contactar</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <span class="sec-label">Sobre mí</span>
+    <h2 class="sec-title">Backend engineer con foco<br>en sistemas financieros.</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div>
+      <p class="about-bio">
+        Ingeniero de Software especializado en <strong>backend con Java y Spring Boot</strong>, con experiencia construyendo microservicios transaccionales y de autenticación para proyectos de alto impacto como el <strong>Banco de Crédito del Perú (BCP)</strong>.
+      </p>
+      <p class="about-bio">
+        He trabajado en entornos ágiles, colaborando con equipos distribuidos en <strong>Encora Inc.</strong>, <strong>Tata Consultancy Services</strong> y plataformas educativas, priorizando código limpio, seguridad y despliegues estables en producción.
+      </p>
+      <div class="about-meta">
+        <div class="meta-item"><p class="meta-key">Ubicación</p><p class="meta-val">Lima, Perú 🇵🇪</p></div>
+        <div class="meta-item"><p class="meta-key">Modalidad</p><p class="meta-val">Remoto / Híbrido</p></div>
+        <div class="meta-item"><p class="meta-key">Idiomas</p><p class="meta-val">Español / Inglés</p></div>
+        <div class="meta-item"><p class="meta-key">Disponible</p><p class="meta-val">Inmediata</p></div>
+      </div>
+    </div>
+    <div class="about-card">
+      <div class="card-avatar">👨‍💻</div>
+      <p class="card-name">kelvin.cardenas</p>
+      <p class="card-role">Backend Engineer</p>
+      <div class="card-chips">
+        <span class="chip">Java</span>
+        <span class="chip">Spring Boot</span>
+        <span class="chip">Microservicios</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <span class="sec-label">Stack</span>
+    <h2 class="sec-title">Tecnologías & Herramientas</h2>
+  </div>
+  <div class="skills-grid reveal" id="skills-grid">
+    <!-- JS will render these -->
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <span class="sec-label">Experiencia</span>
+    <h2 class="sec-title">Trayectoria Profesional</h2>
+  </div>
+  <div class="timeline reveal">
+    <div class="timeline-line"></div>
+
+    <!-- Encora / BCP -->
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <p class="exp-period">AGO 2025 — ACTUALIDAD · 1 año+</p>
+      <h3 class="exp-role">Ingeniero de Software</h3>
+      <p class="exp-company">Encora Inc.</p>
+      <p class="exp-location">Lima, Perú</p>
+      <div class="client-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        Proyecto cliente: Banco de Crédito del Perú (BCP)
+      </div>
+      <p class="exp-desc">
+        Backend Analyst / Ingeniero de Sistemas participando en el proyecto BCP, contribuyendo al desarrollo e integración de microservicios orientados a procesos críticos del negocio financiero.
+      </p>
+      <ul class="exp-bullets">
+        <li>Desarrollo e integración de microservicios para procesos transaccionales y de autenticación</li>
+        <li>Implementación de servicios de seguridad, validación de usuarios y consumo de servicios internos del BCP</li>
+        <li>Diseño y consumo de APIs REST con manejo de headers y metadata</li>
+        <li>Persistencia de datos con JPA / Hibernate en bases de datos relacionales</li>
+        <li>Desarrollo de pruebas unitarias con JUnit y Mockito</li>
+        <li>Despliegues y soporte en entornos de desarrollo, QA y producción</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Security</span>
+        <span class="tag">APIs REST</span><span class="tag">JPA/Hibernate</span><span class="tag">JUnit</span>
+        <span class="tag">Mockito</span><span class="tag">Git</span>
+      </div>
+    </div>
+
+    <!-- TCS -->
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <p class="exp-period">AGO 2022 — ACTUALIDAD · 4 años+</p>
+      <h3 class="exp-role">Ingeniero de Software</h3>
+      <p class="exp-company">Tata Consultancy Services (TCS)</p>
+      <p class="exp-location">Perú · En remoto</p>
+      <p class="exp-desc">
+        Desarrollo de software en un entorno global de consultoría tecnológica, participando en proyectos de desarrollo web y soluciones backend escalables para clientes de distintas industrias.
+      </p>
+      <div class="exp-tags">
+        <span class="tag">Desarrollo de software</span><span class="tag">Desarrollo web</span><span class="tag">Backend</span><span class="tag">Java</span>
+      </div>
+    </div>
+
+    <!-- Talento Tismart -->
+    <div class="exp-item">
+      <div class="exp-dot dim"></div>
+      <p class="exp-period">FEB 2022 — JUL 2022 · 6 meses</p>
+      <h3 class="exp-role">Desarrolladora de Back-end</h3>
+      <p class="exp-company">Talento Tismart</p>
+      <p class="exp-location">Lima, Perú</p>
+      <p class="exp-desc">
+        Desarrollo backend en proyectos de software para clientes peruanos, implementando APIs y servicios con tecnologías Java/Spring en un equipo ágil.
+      </p>
+      <div class="exp-tags">
+        <span class="tag">Java</span><span class="tag">Spring</span><span class="tag">REST APIs</span>
+      </div>
+    </div>
+
+    <!-- iEduca -->
+    <div class="exp-item">
+      <div class="exp-dot dim"></div>
+      <p class="exp-period">JUL 2021 — ENE 2022 · 7 meses</p>
+      <h3 class="exp-role">Desarrollador de Back-end</h3>
+      <p class="exp-company">iEduca · Certus, Toulouse Lautrec y UCAL</p>
+      <p class="exp-location">Lima, Perú</p>
+      <p class="exp-desc">
+        Desarrollo de soluciones backend para plataformas educativas de instituciones líderes en Perú, manejando integraciones y servicios de datos para miles de estudiantes.
+      </p>
+      <div class="exp-tags">
+        <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span><span class="tag">REST</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <span class="sec-label">Proyectos</span>
+    <h2 class="sec-title">Trabajo Destacado</h2>
+  </div>
+  <div class="projects-grid reveal" id="projects-grid">
+    <!-- JS renders cards -->
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <span class="sec-label">Contacto</span>
+    <h2 class="sec-title">Hablemos.</h2>
+  </div>
+  <div class="contact-grid reveal">
+    <div>
+      <p class="contact-lead">
+        Estoy disponible para proyectos freelance, consultoría backend o posiciones full-time. Si tienes un proyecto que requiere microservicios Java/Spring robustos, escríbeme.
+      </p>
+      <div class="contact-items">
+        <div class="ci">
+          <span class="ci-icon">✉️</span>
+          <div><p class="ci-key">Email</p><p class="ci-val">kelvin.cardenas@dev.com</p></div>
+        </div>
+        <div class="ci">
+          <span class="ci-icon">💼</span>
+          <div><p class="ci-key">LinkedIn</p>
+          <a href="https://www.linkedin.com/in/kelvin-shamir-cardenas-paredes-671245191/" target="_blank" class="ci-val link">/in/kelvin-shamir-cardenas-paredes</a></div>
+        </div>
+        <div class="ci">
+          <span class="ci-icon">🐙</span>
+          <div><p class="ci-key">GitHub</p><p class="ci-val link">github.com/kelvincardenas</p></div>
+        </div>
+        <div class="ci">
+          <span class="ci-icon">📍</span>
+          <div><p class="ci-key">Ubicación</p><p class="ci-val">Lima, Perú 🇵🇪</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div id="form-success">
+        <div class="fs-icon">✅</div>
+        <p class="fs-title">¡Mensaje enviado!</p>
+        <p class="fs-sub">Gracias. Te respondo en menos de 24h.</p>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="form-field" id="ff-name">
+          <input type="text" name="name" placeholder="Tu nombre" autocomplete="off"/>
+          <span class="form-error">El nombre es obligatorio</span>
+        </div>
+        <div class="form-field" id="ff-email">
+          <input type="email" name="email" placeholder="Tu email" autocomplete="off"/>
+          <span class="form-error">Email inválido</span>
+        </div>
+        <div class="form-field" id="ff-msg">
+          <textarea name="message" placeholder="Cuéntame sobre tu proyecto..."></textarea>
+          <span class="form-error">El mensaje es obligatorio</span>
+        </div>
+        <button type="submit" id="form-submit">Enviar Mensaje →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Kelvin Shamir Cárdenas Paredes · Lima, Perú</span>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/kelvin-shamir-cardenas-paredes-671245191/" target="_blank">LinkedIn</a>
+    <a href="#" target="_blank">GitHub</a>
+  </div>
+</footer>
+
+<script>
+/* ── Cursor ──────────────────────────────────────── */
+const dot  = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+document.addEventListener('mousemove', e => {
+  dot.style.transform  = `translate(${e.clientX - 3.5}px,${e.clientY - 3.5}px)`;
+  ring.style.transform = `translate(${e.clientX - 15}px,${e.clientY - 15}px)`;
+});
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.transform += ' scale(1.5)';
+    ring.style.borderColor = 'rgba(34,211,165,.7)';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.borderColor = 'rgba(34,211,165,.45)';
+  });
+});
+
+/* ── Nav scroll ──────────────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, {passive:true});
+
+/* ── Typewriter ──────────────────────────────────── */
+const roles = [
+  'Backend Engineer · Java & Spring Boot',
+  'Microservicios & APIs REST',
+  'Proyectos Financieros de Alto Impacto',
+  'Seguridad · Autenticación · Escalabilidad',
+];
+let ri=0, ci=0, del=false;
+const te = document.getElementById('typed');
+function type(){
+  const cur = roles[ri];
+  if(!del && ci < cur.length){ te.textContent = cur.slice(0,++ci); setTimeout(type,68); }
+  else if(!del && ci===cur.length){ del=true; setTimeout(type,1900); }
+  else if(del && ci>0){ te.textContent = cur.slice(0,--ci); setTimeout(type,38); }
+  else { del=false; ri=(ri+1)%roles.length; setTimeout(type,200); }
+}
+type();
+
+/* ── Skills render ───────────────────────────────── */
+const SKILLS = [
+  {name:'Java',           pct:95, icon:'☕', color:'#22d3a5'},
+  {name:'Spring Boot',    pct:93, icon:'🍃', color:'#22d3a5'},
+  {name:'Spring Security',pct:88, icon:'🔐', color:'#38bdf8'},
+  {name:'Microservicios', pct:90, icon:'⚙️', color:'#38bdf8'},
+  {name:'JPA / Hibernate',pct:86, icon:'🗄️', color:'#22d3a5'},
+  {name:'APIs REST',      pct:95, icon:'🔗', color:'#22d3a5'},
+  {name:'JUnit & Mockito',pct:84, icon:'🧪', color:'#a78bfa'},
+  {name:'Docker',         pct:78, icon:'🐳', color:'#38bdf8'},
+  {name:'PostgreSQL',     pct:85, icon:'🐘', color:'#a78bfa'},
+  {name:'Git & GitHub',   pct:92, icon:'🐙', color:'#a78bfa'},
+  {name:'CI/CD',          pct:76, icon:'🚀', color:'#38bdf8'},
+  {name:'AWS',            pct:72, icon:'☁️', color:'#fb923c'},
+];
+const sg = document.getElementById('skills-grid');
+SKILLS.forEach((s,i) => {
+  const half = Math.ceil(SKILLS.length/2);
+  if(i===0) sg.innerHTML += '<div class="skills-col" id="sc0"></div>';
+  if(i===half) sg.innerHTML += '<div class="skills-col" id="sc1"></div>';
+  const col = i < half ? 'sc0' : 'sc1';
+  document.getElementById(col).innerHTML += `
+    <div class="skill-row" data-pct="${s.pct}" data-color="${s.color}">
+      <div class="skill-header">
+        <span class="skill-name">${s.icon} ${s.name}</span>
+        <span class="skill-pct" style="color:${s.color}">${s.pct}%</span>
+      </div>
+      <div class="skill-track">
+        <div class="skill-fill" style="background:linear-gradient(90deg,${s.color},#38bdf8)"></div>
+      </div>
+    </div>`;
+});
+
+/* ── Projects render ─────────────────────────────── */
+const PROJECTS = [
+  {
+    title:'Microservicios BCP',
+    client:'Banco de Crédito del Perú',
+    desc:'Desarrollo e integración de microservicios para procesos transaccionales y de autenticación de uno de los bancos más grandes de Perú.',
+    stack:['Java','Spring Boot','Spring Security','JPA','JUnit'],
+    icon:'🏦', color:'#22d3a5',
+  },
+  {
+    title:'API de Autenticación & Tokens',
+    client:'BCP via Encora',
+    desc:'Implementación de servicios de seguridad, validación de usuarios y manejo de tokens JWT para flujos críticos del negocio financiero.',
+    stack:['Spring Security','JWT','OAuth2','REST','Mockito'],
+    icon:'🔐', color:'#38bdf8',
+  },
+  {
+    title:'Pipeline Backend TCS',
+    client:'Tata Consultancy Services',
+    desc:'Soluciones backend escalables para clientes corporativos globales, incluyendo desarrollo web e integración de sistemas en entorno remoto.',
+    stack:['Java','Spring Boot','Microservicios','CI/CD','Docker'],
+    icon:'🌐', color:'#a78bfa',
+  },
+  {
+    title:'Plataforma Educativa',
+    client:'iEduca · Certus / Toulouse Lautrec / UCAL',
+    desc:'Backend de plataforma e-learning para tres instituciones educativas líderes en Perú, gestionando datos de miles de estudiantes.',
+    stack:['Spring Boot','MySQL','REST APIs','JPA','Maven'],
+    icon:'🎓', color:'#fb923c',
+  },
+  {
+    title:'Servicios Backend Tismart',
+    client:'Talento Tismart',
+    desc:'APIs y servicios backend para clientes peruanos, enfocados en integración de datos y lógica de negocio en equipos ágiles.',
+    stack:['Java','Spring','REST','Git','Agile'],
+    icon:'⚙️', color:'#f472b6',
+  },
+  {
+    title:'Gateway API REST',
+    client:'Proyecto Personal / Open Source',
+    desc:'API Gateway centralizado para enrutar, autenticar y gestionar múltiples microservicios con rate limiting y logging estructurado.',
+    stack:['Spring Cloud Gateway','JWT','Redis','Docker','GitHub Actions'],
+    icon:'🛡️', color:'#34d399',
+  },
+];
+const pg = document.getElementById('projects-grid');
+PROJECTS.forEach(p => {
+  pg.innerHTML += `
+    <article class="proj-card" style="--cc:${p.color}">
+      <div class="proj-accent"></div>
+      <div class="proj-client-flag">${p.client}</div>
+      <span class="proj-icon">${p.icon}</span>
+      <h3 class="proj-title">${p.title}</h3>
+      <p class="proj-desc">${p.desc}</p>
+      <div class="proj-stack">${p.stack.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="proj-arrow">→</div>
+    </article>`;
+});
+
+/* ── Intersection Observer (reveal + skills) ─────── */
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    e.target.classList.add('visible');
+    obs.unobserve(e.target);
+  });
+}, {threshold:.12});
+revealEls.forEach(el => obs.observe(el));
+
+// Skills bars — fire when skills section visible
+const skillObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(!e.isIntersecting) return;
+    document.querySelectorAll('.skill-row').forEach((row,i) => {
+      setTimeout(() => {
+        row.querySelector('.skill-fill').style.width = row.dataset.pct + '%';
+      }, i * 80);
+    });
+    skillObs.unobserve(e.target);
+  });
+}, {threshold:.1});
+const skillSec = document.getElementById('skills');
+if(skillSec) skillObs.observe(skillSec);
+
+/* ── Form validation ─────────────────────────────── */
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name  = form.name.value.trim();
+  const email = form.email.value.trim();
+  const msg   = form.message.value.trim();
+  let valid = true;
+  const ffName  = document.getElementById('ff-name');
+  const ffEmail = document.getElementById('ff-email');
+  const ffMsg   = document.getElementById('ff-msg');
+  ffName.classList.toggle('invalid', !name);
+  ffEmail.classList.toggle('invalid', !email || !/\S+@\S+\.\S+/.test(email));
+  ffMsg.classList.toggle('invalid', !msg);
+  if(!name || !email || !/\S+@\S+\.\S+/.test(email) || !msg) return;
+  // Success state
+  form.style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+});
+
+/* ── Smooth scroll for nav links ─────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+</body>
+</html>
