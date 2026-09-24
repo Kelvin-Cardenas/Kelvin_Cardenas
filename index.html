@@ -303,6 +303,89 @@ footer{
 .footer-links a{font-family:var(--mono);font-size:11px;color:var(--dim);transition:color .2s}
 .footer-links a:hover{color:var(--green)}
 
+/* ── Services ────────────────────────────────────── */
+.services-intro{color:var(--muted);font-size:15px;line-height:1.9;max-width:640px;margin-bottom:52px}
+.services-intro strong{color:var(--text)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-bottom:72px}
+.srv-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:6px;
+  padding:28px;transition:border-color .25s,transform .25s,background .25s;
+  position:relative;overflow:hidden;
+}
+.srv-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--sc,var(--green)),transparent);
+}
+.srv-card:hover{border-color:var(--sc,var(--green));background:rgba(255,255,255,.05);transform:translateY(-4px)}
+.srv-icon{font-size:32px;margin-bottom:14px;display:block}
+.srv-title{font-size:17px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.02em}
+.srv-desc{color:var(--muted);font-size:13px;line-height:1.8;margin-bottom:14px}
+.srv-features{list-style:none;display:flex;flex-direction:column;gap:4px}
+.srv-features li{font-size:12px;color:var(--muted);padding-left:14px;position:relative}
+.srv-features li::before{content:'✓';position:absolute;left:0;color:var(--sc,var(--green));font-weight:700;font-size:10px;top:2px}
+
+/* ── Clients ─────────────────────────────────────── */
+.clients-title{font-size:13px;font-family:var(--mono);color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:28px}
+.clients-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.client-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:5px;
+  padding:20px 22px;display:flex;align-items:center;gap:14px;
+  transition:border-color .2s,background .2s;
+}
+.client-card:hover{border-color:rgba(34,211,165,.25);background:rgba(34,211,165,.03)}
+.client-logo{font-size:28px;flex-shrink:0}
+.client-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
+.client-type{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em}
+
+/* ── Payments ────────────────────────────────────── */
+.pay-section{margin-top:52px}
+.pay-title{font-size:13px;font-family:var(--mono);color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px}
+.pay-grid{display:flex;flex-wrap:wrap;gap:10px}
+.pay-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 16px;border-radius:4px;
+  border:1px solid var(--border);background:var(--surface);
+  font-size:12px;font-weight:600;color:var(--text);
+  transition:border-color .2s,background .2s;
+}
+.pay-badge:hover{border-color:rgba(34,211,165,.3);background:rgba(34,211,165,.05)}
+.pay-badge span{font-size:18px}
+
+/* ── WhatsApp Float ──────────────────────────────── */
+#wsp-float{
+  position:fixed;bottom:28px;right:28px;z-index:500;
+  display:flex;flex-direction:column;align-items:flex-end;gap:10px;
+}
+.wsp-bubble{
+  background:#fff;color:#111;font-size:12px;font-weight:500;
+  border-radius:10px 10px 0 10px;padding:10px 14px;
+  box-shadow:0 4px 20px rgba(0,0,0,.35);max-width:200px;line-height:1.4;
+  animation:wsp-pop .4s var(--ease) both;
+  display:none;
+}
+.wsp-bubble.show{display:block}
+@keyframes wsp-pop{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
+.wsp-btn{
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#128c7e);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+  transition:transform .2s,box-shadow .2s;
+  text-decoration:none;cursor:pointer;border:none;
+  animation:wsp-bounce 3s ease-in-out infinite;
+}
+.wsp-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.6)}
+@keyframes wsp-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.wsp-btn svg{width:28px;height:28px;fill:#fff}
+.wsp-ping{
+  position:absolute;top:-3px;right:-3px;
+  width:16px;height:16px;border-radius:50%;background:#ef4444;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:#fff;
+  animation:ping-pulse 2s infinite;
+}
+@keyframes ping-pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.5)}70%{box-shadow:0 0 0 8px rgba(239,68,68,0)}}
+
 /* ── Animations ──────────────────────────────────── */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
 .reveal.visible{opacity:1;transform:none}
@@ -320,6 +403,8 @@ footer{
   #hero{padding:0 5vw}
   .scroll-hint{left:5vw}
   footer{padding:24px 5vw}
+  #wsp-float{bottom:18px;right:16px}
+  .wsp-btn{width:52px;height:52px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
@@ -340,6 +425,7 @@ footer{
     <li><a href="#about">Sobre mí</a></li>
     <li><a href="#skills">Habilidades</a></li>
     <li><a href="#experience">Experiencia</a></li>
+    <li><a href="#services">Servicios</a></li>
     <li><a href="#projects">Proyectos</a></li>
     <li><a href="#contact">Contacto</a></li>
   </ul>
@@ -365,7 +451,10 @@ footer{
     </div>
     <div class="hero-btns">
       <a href="#projects" class="btn-primary">Ver Proyectos →</a>
-      <a href="#contact" class="btn-outline">Contactar</a>
+      <a href="https://wa.me/51994426221?text=Hola%20Kelvin%2C%20vi%20tu%20portafolio%20y%20me%20interesa%20tu%20trabajo%20%F0%9F%91%8B" target="_blank" class="btn-outline" style="display:inline-flex;align-items:center;gap:8px;border-color:#25d366;color:#25d366;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.853L.057 23.7a.5.5 0 0 0 .61.636l5.988-1.586A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.893 9.893 0 0 1-5.031-1.374l-.361-.214-3.735.989 1-3.643-.235-.374A9.857 9.857 0 0 1 2.1 12C2.1 6.533 6.533 2.1 12 2.1S21.9 6.533 21.9 12 17.467 21.9 12 21.9z"/></svg>
+        WhatsApp
+      </a>
     </div>
   </div>
   <div class="scroll-hint">
@@ -505,6 +594,132 @@ footer{
   </div>
 </section>
 
+<!-- SERVICES & CLIENTS -->
+<section id="services">
+  <div class="reveal">
+    <span class="sec-label">Lo que hacemos</span>
+    <h2 class="sec-title">Soluciones digitales<br>a tu medida.</h2>
+    <p class="services-intro">
+      Desarrollamos <strong>páginas web, aplicaciones y software personalizado</strong> para negocios de cualquier tamaño. Desde una landing page hasta un sistema completo con pasarela de pagos integrada. Cada proyecto es único y lo construimos desde cero según tus necesidades.
+    </p>
+  </div>
+
+  <div class="services-grid reveal">
+    <div class="srv-card" style="--sc:#22d3a5">
+      <span class="srv-icon">🌐</span>
+      <h3 class="srv-title">Páginas Web a Medida</h3>
+      <p class="srv-desc">Diseño y desarrollo de sitios web profesionales, rápidos y adaptados a tu negocio. Perfectos para presentar tu marca y captar clientes.</p>
+      <ul class="srv-features">
+        <li>Diseño responsive (móvil y escritorio)</li>
+        <li>Velocidad de carga optimizada</li>
+        <li>SEO básico incluido</li>
+        <li>Dominio y hosting orientado</li>
+      </ul>
+    </div>
+    <div class="srv-card" style="--sc:#38bdf8">
+      <span class="srv-icon">🛒</span>
+      <h3 class="srv-title">Tiendas Online & E-commerce</h3>
+      <p class="srv-desc">Sistemas de venta en línea con carrito de compras, gestión de productos y cobros automatizados con pasarelas de pago peruanas e internacionales.</p>
+      <ul class="srv-features">
+        <li>Pasarela Izipay / Niubiz / Culqi</li>
+        <li>Pasarela PayPal / Stripe</li>
+        <li>Panel de administración propio</li>
+        <li>Gestión de inventario</li>
+      </ul>
+    </div>
+    <div class="srv-card" style="--sc:#a78bfa">
+      <span class="srv-icon">💊</span>
+      <h3 class="srv-title">Software para Boticas & Farmacias</h3>
+      <p class="srv-desc">Sistemas de gestión especializados para el sector farmacéutico: control de stock, ventas, vencimientos, reportes y más.</p>
+      <ul class="srv-features">
+        <li>Control de inventario por lote y vencimiento</li>
+        <li>Facturación electrónica SUNAT</li>
+        <li>Módulo de ventas con POS</li>
+        <li>Reportes de stock y utilidades</li>
+      </ul>
+    </div>
+    <div class="srv-card" style="--sc:#fb923c">
+      <span class="srv-icon">⚙️</span>
+      <h3 class="srv-title">Software Empresarial a Medida</h3>
+      <p class="srv-desc">Desarrollamos sistemas internos, CRMs, ERPs y APIs personalizadas para automatizar procesos y hacer crecer tu negocio.</p>
+      <ul class="srv-features">
+        <li>Microservicios con Java & Spring Boot</li>
+        <li>Integraciones con sistemas externos</li>
+        <li>APIs REST para apps móviles</li>
+        <li>Soporte y mantenimiento incluido</li>
+      </ul>
+    </div>
+    <div class="srv-card" style="--sc:#f472b6">
+      <span class="srv-icon">💳</span>
+      <h3 class="srv-title">Integración de Pasarelas de Pago</h3>
+      <p class="srv-desc">Conectamos tu negocio a los métodos de pago más usados en Perú y el mundo. Cobra con tarjeta, Yape, Plin, transferencia y más.</p>
+      <ul class="srv-features">
+        <li>Izipay (Visa / Mastercard)</li>
+        <li>Culqi & Niubiz</li>
+        <li>Yape y Plin (QR)</li>
+        <li>PayPal & Stripe (internacional)</li>
+      </ul>
+    </div>
+    <div class="srv-card" style="--sc:#34d399">
+      <span class="srv-icon">📱</span>
+      <h3 class="srv-title">Aplicaciones Móviles & Web Apps</h3>
+      <p class="srv-desc">Apps web progresivas y aplicaciones que funcionan en cualquier dispositivo, con notificaciones, modo offline y experiencia nativa.</p>
+      <ul class="srv-features">
+        <li>React / Spring Boot</li>
+        <li>PWA (instalable en celular)</li>
+        <li>Notificaciones push</li>
+        <li>Sincronización en tiempo real</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CLIENTS -->
+  <div class="reveal">
+    <p class="clients-title">// Sectores y clientes que atendemos</p>
+    <div class="clients-grid">
+      <div class="client-card">
+        <span class="client-logo">🏦</span>
+        <div><p class="client-name">Sector Bancario</p><p class="client-type">BCP · Fintech · Microfinanzas</p></div>
+      </div>
+      <div class="client-card">
+        <span class="client-logo">💊</span>
+        <div><p class="client-name">Boticas & Farmacias</p><p class="client-type">Cadenas · Boticas independientes</p></div>
+      </div>
+      <div class="client-card">
+        <span class="client-logo">🛍️</span>
+        <div><p class="client-name">Comercio & Retail</p><p class="client-type">Tiendas online · E-commerce</p></div>
+      </div>
+      <div class="client-card">
+        <span class="client-logo">🎓</span>
+        <div><p class="client-name">Instituciones Educativas</p><p class="client-type">Certus · Toulouse Lautrec · UCAL</p></div>
+      </div>
+      <div class="client-card">
+        <span class="client-logo">🏥</span>
+        <div><p class="client-name">Salud & Clínicas</p><p class="client-type">Consultorios · Clínicas · Laboratorios</p></div>
+      </div>
+      <div class="client-card">
+        <span class="client-logo">🚚</span>
+        <div><p class="client-name">Logística & Delivery</p><p class="client-type">Tracking · Gestión de pedidos</p></div>
+      </div>
+    </div>
+
+    <!-- PAYMENT GATEWAYS -->
+    <div class="pay-section">
+      <p class="pay-title">// Pasarelas de pago que integramos</p>
+      <div class="pay-grid">
+        <div class="pay-badge"><span>🇵🇪</span> Izipay</div>
+        <div class="pay-badge"><span>🇵🇪</span> Culqi</div>
+        <div class="pay-badge"><span>🇵🇪</span> Niubiz</div>
+        <div class="pay-badge"><span>📱</span> Yape QR</div>
+        <div class="pay-badge"><span>📱</span> Plin</div>
+        <div class="pay-badge"><span>🌎</span> PayPal</div>
+        <div class="pay-badge"><span>🌎</span> Stripe</div>
+        <div class="pay-badge"><span>🌎</span> MercadoPago</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects">
   <div class="reveal">
@@ -525,22 +740,25 @@ footer{
   <div class="contact-grid reveal">
     <div>
       <p class="contact-lead">
-        Estoy disponible para proyectos freelance, consultoría backend o posiciones full-time. Si tienes un proyecto que requiere microservicios Java/Spring robustos, escríbeme.
+        ¿Tienes un proyecto en mente? Ya sea una página web, una app, software a medida o una pasarela de pagos — <strong style="color:var(--text)">escríbeme y lo hacemos realidad.</strong> Respondo en menos de 24h.
       </p>
       <div class="contact-items">
-        <div class="ci">
+        <a href="https://wa.me/51994426221?text=Hola%20Kelvin%2C%20vi%20tu%20portafolio%20y%20quiero%20cotizar%20un%20proyecto%20%F0%9F%91%8B" target="_blank" class="ci" style="border-color:rgba(37,211,102,.25);background:rgba(37,211,102,.04);">
+          <span class="ci-icon">💬</span>
+          <div>
+            <p class="ci-key">WhatsApp — Respuesta inmediata</p>
+            <p class="ci-val" style="color:#25d366">+51 994 426 221</p>
+          </div>
+        </a>
+        <a href="mailto:kscp1087@gmail.com" class="ci">
           <span class="ci-icon">✉️</span>
-          <div><p class="ci-key">Email</p><p class="ci-val">kelvin.cardenas@dev.com</p></div>
-        </div>
-        <div class="ci">
+          <div><p class="ci-key">Email</p><p class="ci-val link">kscp1087@gmail.com</p></div>
+        </a>
+        <a href="https://www.linkedin.com/in/kelvin-shamir-cardenas-paredes-671245191/" target="_blank" class="ci">
           <span class="ci-icon">💼</span>
           <div><p class="ci-key">LinkedIn</p>
-          <a href="https://www.linkedin.com/in/kelvin-shamir-cardenas-paredes-671245191/" target="_blank" class="ci-val link">/in/kelvin-shamir-cardenas-paredes</a></div>
-        </div>
-        <div class="ci">
-          <span class="ci-icon">🐙</span>
-          <div><p class="ci-key">GitHub</p><p class="ci-val link">github.com/kelvincardenas</p></div>
-        </div>
+          <p class="ci-val link">/in/kelvin-shamir-cardenas-paredes</p></div>
+        </a>
         <div class="ci">
           <span class="ci-icon">📍</span>
           <div><p class="ci-key">Ubicación</p><p class="ci-val">Lima, Perú 🇵🇪</p></div>
@@ -575,12 +793,35 @@ footer{
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© 2025 Kelvin Shamir Cárdenas Paredes · Lima, Perú</span>
+  <span class="footer-copy">© 2025 Kelvin Shamir Cárdenas Paredes · Lima, Perú · kscp1087@gmail.com</span>
   <div class="footer-links">
     <a href="https://www.linkedin.com/in/kelvin-shamir-cardenas-paredes-671245191/" target="_blank">LinkedIn</a>
-    <a href="#" target="_blank">GitHub</a>
+    <a href="https://wa.me/51994426221" target="_blank" style="color:#25d366">WhatsApp</a>
+    <a href="mailto:kscp1087@gmail.com">Email</a>
   </div>
 </footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<div id="wsp-float">
+  <div class="wsp-bubble" id="wsp-bubble">
+    👋 ¡Hola! ¿Tienes un proyecto?<br>
+    <strong>Escríbeme, te respondo ya.</strong>
+  </div>
+  <a
+    href="https://wa.me/51994426221?text=Hola%20Kelvin%2C%20vi%20tu%20portafolio%20y%20quiero%20cotizar%20un%20proyecto%20%F0%9F%91%8B"
+    target="_blank"
+    class="wsp-btn"
+    id="wsp-btn"
+    title="Chatear por WhatsApp"
+    style="position:relative"
+  >
+    <div class="wsp-ping">1</div>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.123 1.528 5.853L.057 23.7a.5.5 0 0 0 .61.636l5.988-1.586A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.9a9.893 9.893 0 0 1-5.031-1.374l-.361-.214-3.735.989 1-3.643-.235-.374A9.857 9.857 0 0 1 2.1 12C2.1 6.533 6.533 2.1 12 2.1S21.9 6.533 21.9 12 17.467 21.9 12 21.9z"/>
+    </svg>
+  </a>
+</div>
 
 <script>
 /* ── Cursor ──────────────────────────────────────── */
@@ -761,6 +1002,20 @@ form.addEventListener('submit', e => {
   form.style.display = 'none';
   document.getElementById('form-success').style.display = 'block';
 });
+
+/* ── WhatsApp bubble ─────────────────────────────── */
+const wspBubble = document.getElementById('wsp-bubble');
+const wspBtn    = document.getElementById('wsp-btn');
+// Show bubble after 4 seconds
+setTimeout(() => wspBubble.classList.add('show'), 4000);
+// Toggle bubble on button hover
+wspBtn.addEventListener('mouseenter', () => wspBubble.classList.add('show'));
+// Hide bubble after clicking
+wspBtn.addEventListener('click', () => {
+  setTimeout(() => wspBubble.classList.remove('show'), 2000);
+});
+// Re-show bubble every 30 seconds if not visible
+setInterval(() => { if(!wspBubble.classList.contains('show')) wspBubble.classList.add('show'); }, 30000);
 
 /* ── Smooth scroll for nav links ─────────────────── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
